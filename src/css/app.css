@@ -5,11 +5,15 @@
 
 
 .card {
+ font-size:0.6em;
  flex-basis:15%;
  margin:0.5%;
+ margin-top:2em;
  border-radius: 5%;
  box-shadow:0 6px 16px rgba(0,0,0,0.15);
 
 }
+
+
 
 img {max-width:100%;}

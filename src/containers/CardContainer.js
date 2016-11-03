@@ -5,7 +5,7 @@ import CardDisplay from '../components/CardDisplay'
 
 
 
-const CardContainer =({products,dispatch}) =>{
+const CardContainer =({products}) =>{
        
     console.log(products[0]);
 
@@ -13,8 +13,8 @@ const CardContainer =({products,dispatch}) =>{
 			<div className='browse'>
 				<div className='box'>
 					<CardDisplay  
-						dispatch={dispatch} 
-						products={ products.map(product=>({
+						
+						cards={ products.map(product=>({
                          				id:product.id,
                          				name:product.name,
                          				smallImage:product.smallImage,
