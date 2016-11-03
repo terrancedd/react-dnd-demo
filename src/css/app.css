@@ -1,0 +1,15 @@
+.display{
+ display: flex;
+ flex-flow: row wrap;
+}
+
+
+.card {
+ flex-basis:15%;
+ margin:0.5%;
+ border-radius: 5%;
+ box-shadow:0 6px 16px rgba(0,0,0,0.15);
+
+}
+
+img {max-width:100%;}
