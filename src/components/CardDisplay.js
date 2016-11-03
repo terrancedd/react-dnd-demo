@@ -11,8 +11,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
     super(props);
     this.moveCard = this.moveCard.bind(this);
     this.loadMore = this.loadMore.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
     this.state = {cards:props.cards.slice(0,48)};
-      console.log(this.state);
+    
   }
 
   moveCard(dragIndex, hoverIndex) {
@@ -21,7 +22,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
     const hoverCard=cards[hoverIndex];
     const after_hoverCard={...dragCard, id:hoverCard.id,key:hoverCard.id};
     const after_dragCard={...hoverCard, id:dragCard.id, key:dragCard.id};
-    console.log('id '+dragCard.id);
    
     
     this.setState(update(this.state, {
@@ -38,7 +38,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
   }
 
   loadMore(){
-    console.log(this.state);
+   
   	let index=this.state.cards.length-1;
     let lastIndex=index+24;
   	if(lastIndex>this.props.cards.length-1) lastIndex=this.props.cards.length-1;
@@ -54,35 +54,37 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
   }
 
-/*
-  exchangeCard(dragIndex, dropIndex){
+
+  updateProduct(dropIndex){
     const { cards } = this.state;
-    const dragCard = cards[dragIndex];
-    const dropCard = cards[dropIndex];
+    const before=dropIndex-1;
+    const after=dropIndex+1
+    
+    let beforeSortValue=0;
+    let afterSortValue=this.props.cards[this.props.cards.length-1].stylesort;
+    if(before>=0) beforeSortValue=cards[before].stylesort;
+    if(after<=this.props.cards.length-1) afterSortValue=cards[after].stylesort;
 
-    const after_dropCard={...dragCard, id:dropCard.id};
-    const after_dragCard={...dropCard, id:dragCard.id};
+    let newSortValue=(beforeSortValue+afterSortValue)/2;
 
+    let updatedProduct={...cards[dropIndex],stylesort:newSortValue};
+    console.log('beforeSortValue: '+ beforeSortValue);
+    console.log('afterSortValue '+ afterSortValue);
+    console.log('Setting sort value of '+ cards[dropIndex].id+' to '+ newSortValue);
+   
     this.setState(update(this.state,
        {
-    	cards: {
-    				{
-    					dragIndex:{
-    						$set: after_dropCard
+    	cards: { [dropIndex]:{
+    						$set: updatedProduct
     					}
-    				},
-    				{
-    					dropIndex:{
-    						$set: after_dragCard
-    					}
-    				}	
+    				
 				}
 		}
 		));
 
   }
 
-*/
+
   render() {
     const { cards } = this.state;
 
@@ -101,7 +103,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
                   smallImage={card.smallImage}
                   designer={card.designer}
                   name={card.name}
-                  moveCard={this.moveCard} />
+                  stylesort={card.stylesort}
+                  moveCard={this.moveCard}
+                  updateProduct={this.updateProduct} />
           );
         })}
       </InfiniteScroll>

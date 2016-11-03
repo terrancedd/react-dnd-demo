@@ -42,27 +42,16 @@ const cardTarget = {
     props.moveCard(dragIndex, hoverIndex);
 
     monitor.getItem().index = hoverIndex;
-  }
-/*
+  },
+
  drop(props, monitor, component) {
 
 
- 	 const dragIndex = monitor.getItem().index;
-    const  dropIndex = props.index;
+ 	const dropIndex = monitor.getItem().index;
 
-      if (dragIndex === ddropIndexropId) {
-      return;
-    }
-
-    props.exchangeCard(dragIndex, dropIndex);
-
-
-
-
- }
- */
-
-};
+    props.updateProduct(dropIndex);
+   }
+ };
 
 
 class Card extends Component {
@@ -74,9 +63,9 @@ class Card extends Component {
     return connectDragSource(connectDropTarget(
     
         <div className='card' style={{ opacity }}>
-  	    <img src={'https://styletribute.com'+smallImage }/>
-  	    <div>{name}</div>
-  	    <div className='designer'>Design by {designer}</div>
+  	    	<img src={'https://styletribute.com'+smallImage }/>
+  	    	<div>{name}</div>
+  	    	<div style={{fontWeight:'bold'}}>{designer}</div>
   	    </div>
 	
       

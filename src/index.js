@@ -8,7 +8,6 @@ import CardContainer from './containers/CardContainer'
 
 import css from './css/app.css'
 
-console.log( products[0]);
 
 const store=createStore(reducer);
 
@@ -18,8 +17,6 @@ store.dispatch({
   products: products
 });
 
-
-console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
