@@ -1,5 +1,6 @@
 #Introduction
 This is a product listing and sorting via drag&drop app demo built via React+Redux
+There are also two React libary I used: Infinite Scroll and Drag&Drop
 
 
 ##Usage
